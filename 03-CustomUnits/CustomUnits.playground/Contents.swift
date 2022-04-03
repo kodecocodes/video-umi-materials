@@ -3,14 +3,14 @@ import Foundation
 
 extension UnitLength {
   class var legos: UnitLength {
-      return UnitLength(symbol: "lg", converter: UnitConverterLinear(coefficient: 0.032))
+      UnitLength(symbol: "lg", converter: UnitConverterLinear(coefficient: 0.032))
   }
 }
 
-let legoBrick = Measurement(value: 1, unit: UnitLength.legos)
+var legoBrick = Measurement(value: 1, unit: UnitLength.legos)
 
-legoBrick.converted(to: .baseUnit())
-legoBrick.converted(to: .inches)
+legoBrick.convert(to: .baseUnit())
+legoBrick.convert(to: .inches)
 
 class UnitConverterLogarithmic: UnitConverter {
   let coefficient: Double
@@ -22,11 +22,11 @@ class UnitConverterLogarithmic: UnitConverter {
   }
     
   override func baseUnitValue(fromValue value: Double) -> Double {
-    return coefficient * log(value) / log(logBase)
+    coefficient * log(value) / log(logBase)
   }
   
   override func value(fromBaseUnitValue baseUnitValue: Double) -> Double {
-    return exp(baseUnitValue * log(logBase) / coefficient)
+    exp(baseUnitValue * log(logBase) / coefficient)
   }
 }
 
@@ -39,12 +39,12 @@ final class UnitRatio: Dimension {
   static let powerRatio = UnitRatio(symbol: "", converter: UnitConverterLogarithmic(coefficient: 10, logBase: 10))
   
   override class func baseUnit() -> UnitRatio {
-    return UnitRatio.decibels
+    UnitRatio.decibels
   }
 }
 
-let doubleVolume = Measurement(value: 2, unit: UnitRatio.powerRatio)
-doubleVolume.converted(to: .decibels)
+var doubleVolume = Measurement(value: 2, unit: UnitRatio.powerRatio)
+doubleVolume.convert(to: .decibels)
 
 
 

@@ -1,9 +1,9 @@
 //: # Measurements and Units
 import Foundation
 
-let cycleRide = Measurement(value: 25, unit: UnitLength.kilometers)
-cycleRide.converted(to: .miles)
-cycleRide.converted(to: .scandinavianMiles)
+var cycleRide = Measurement(value: 25, unit: UnitLength.kilometers)
+cycleRide.convert(to: .miles)
+cycleRide.convert(to: .scandinavianMiles)
 
 let distanceCompleted = Measurement(value: 13, unit: UnitLength.kilometers)
 cycleRide - distanceCompleted
@@ -14,8 +14,8 @@ let marathon = Measurement(value: 26, unit: UnitLength.miles) + Measurement(valu
 
 let run = marathon / 2
 
-let triathalon = cycleRide + swim + run
+var triathlon = cycleRide + swim + run
 
-triathalon.converted(to: .nauticalMiles)
+triathlon.convert(to: .nauticalMiles)
 
-triathalon > cycleRide
+triathlon > cycleRide
